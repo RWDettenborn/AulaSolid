@@ -1,36 +1,42 @@
-﻿namespace AulaSolid
+﻿using AulaSolid.Interfaces;
+using AulaSolid.Repositories;
+using AulaSolid.Services;
+
+namespace AulaSolid
 {
-    public class ProcessadorPedido
-    {
-        public void Processar(string cliente, double valorTotal, string emailCliente)
-        {
-            // 1. Validação do pedido
-            if (valorTotal <= 0)
-            {
-                throw new ArgumentException("Valor do pedido inválido.");
-            }
-
-            // 2. Aplicação de desconto (Regra de negócio)
-            if (valorTotal > 1000)
-            {
-                valorTotal -= 100; // Desconto VIP
-            }
-
-            // 3. Simulação de salvar no Banco de Dados
-            Console.WriteLine($"Salvando pedido de {cliente} no valor de R${valorTotal} no Banco de Dados...");
-
-            // 4. Envio de E-mail de confirmação
-            Console.WriteLine($"Enviando e-mail para {emailCliente}: Seu pedido foi processado com sucesso!");
-        }
-    }
-
-    // Exemplo teste de execução
     public class Program
     {
         public static void Main()
         {
-            var processador = new ProcessadorPedido();
-            processador.Processar("Robert William", 1500, "robert@gmail.com");
+            IPedidoRepository repositorio = new PedidoRepository();
+            INotificacaoService servicoNotificacao = new EmailService();
+            var processador = new ProcessadorPedido(repositorio, servicoNotificacao);
+
+            Console.WriteLine((new string('-', 12) + "SISTEMA DE PROCESSAMENTO DE PEDIDOS:" + new string('-', 12)));
+
+            Console.Write("Digite o nome do cliente: ");
+            string cliente = Console.ReadLine();
+
+            Console.Write("Digite o valor total do pedido (ex: 1500,00): ");
+            double valorTotal = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite o e-mail de contato: ");
+            string contato = Console.ReadLine();
+
+            Console.WriteLine("\nIniciando processamento...");
+            Console.WriteLine(new string('-', 60));
+
+            try
+            {
+                processador.Processar(cliente, valorTotal, contato);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERRO] {ex.Message}");
+            }
+
+            Console.WriteLine(new string('-', 60));
+            Console.ReadKey();
         }
     }
 }
