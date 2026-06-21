@@ -2,7 +2,7 @@
 
 Este repositório contém a refatoração de um sistema de processamento de pedidos em C#, desenvolvido como parte de uma atividade acadêmica para demonstrar a aplicação prática dos princípios SOLID em arquitetura de software.
 
-## 💻 Sobre o Projeto
+## Sobre o Projeto
 
 O objetivo do trabalho foi analisar uma classe monolítica (`ProcessadorPedido`) que concentrava múltiplas responsabilidades — validação, cálculo de regras de negócio, acesso a banco de dados e envio de notificações — e refatorá-la visando alta coesão e baixo acoplamento.
 
@@ -11,18 +11,18 @@ Os seguintes princípios foram o foco da refatoração:
 * **OCP (Open/Closed Principle):** A arquitetura garante que o sistema esteja aberto para extensão. É possível adicionar novos métodos de notificação (ex: `WhatsAppService`) sem necessidade de alterar o código da classe orquestradora.
 * **DIP (Dependency Inversion Principle):** O processador principal não depende de implementações concretas, mas sim de interfaces (`IPedidoRepository`, `INotificacaoService`), que são injetadas dinamicamente através do construtor.
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 * C# (.NET Console Application)
 * Visual Studio
 * Paradigma de Orientação a Objetos
 
-## 📂 Estrutura e Versionamento
+## Estrutura e Versionamento
 
 O histórico de commits deste repositório foi construído em duas etapas lógicas para demonstrar a evolução da arquitetura:
 1. **Commit 1:** Contém o cenário original com o código monolítico.
 2. **Commit 2:** Contém a versão final refatorada, com leitura de dados interativa e o sistema estruturado em pastas modulares (`/Interfaces`, `/Repositories`, `/Services`).
 
-## 🚀 Como Executar
+## Como Executar
 
 1. Realize o clone deste repositório em sua máquina local.
 2. Abra o projeto através do **Visual Studio**.
@@ -31,4 +31,4 @@ O histórico de commits deste repositório foi construído em duas etapas lógic
 
 ---
 **Autor:** Robert William Dettenborn  
-*Trilha de Estudo Autônomo - Análise e Desenvolvimento de Sistemas (ADS)*
+*Trilha de Estudo Autônomo - Análise e Desenvolvimento de Sistemas (ADS) - SESI SENAI (Chapecó/SC)*
